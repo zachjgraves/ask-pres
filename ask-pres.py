@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import pandas as pd
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 MODEL = "gpt-3.5-turbo"
 question = []
