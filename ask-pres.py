@@ -1,8 +1,9 @@
 import streamlit as st
 import openai
 import pandas as pd
+import os
 
-openai.api_key = "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"
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 MODEL = "gpt-3.5-turbo"
 question = []
