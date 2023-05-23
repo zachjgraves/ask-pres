@@ -2,31 +2,26 @@ import streamlit as st
 import openai
 import pandas as pd
 import os
+from PIL import Image
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
-MODEL = "gpt-3.5-turbo"
-question = []
+st.title("Ask a President")
+
+image = Image.open('header.jpg')
+st.image(image, caption='Photo by Jean Beller on Unsplash')
+
 question = st.text_area("Insert a question")
 
 person = st.selectbox("Pick a person", ["Donald Trump", "Barack Obama", "George W. Bush", "Abraham Lincoln", "George Washington"])
 
-history = [
-    {"role": "system",
-    "content": "You are a caricature of the president of the United States of America, {}".format(person)
-    }
-]
+if st.button("Submit"):
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="Imagine you are a caricature of the president of the United States, {}, answer this question in two paragraphs as if you were a stand-up comedian: {}?".format(person, question),
+        max_tokens=500
+    )
 
-response = openai.ChatCompletion.create (
-    model = MODEL,
-    messages = [
-    {"role": "system",
-    "content": "Imagine are a caricature of the president of the United States of America, {}".format(person),
-    "role": "user",
-    "content": "As a caricature of the president of the united states, {}, answer this question in two paragraphs: {}".format(person, question)
-    }]
-)
+    answer = response.choices[0].text
+    st.caption(answer)
 
-answer = response.choices[0]["message"].content
-
-st.caption(answer)
