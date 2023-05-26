@@ -13,7 +13,7 @@ st.image(image, caption='Photo by Jean Beller on Unsplash')
 
 question = st.text_area("Insert a question")
 
-person = st.selectbox("Pick a person", ["Donald Trump", "Barack Obama", "George W. Bush", "Abraham Lincoln", "George Washington"])
+person = st.selectbox("Pick a person", ["Joe Biden", "Donald Trump", "Barack Obama", "George W. Bush", "Abraham Lincoln", "George Washington"])
 
 if st.button("Submit"):
     response = openai.Completion.create(
