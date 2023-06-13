@@ -18,8 +18,10 @@ person = st.selectbox("Pick a person", ["Joe Biden", "Donald Trump", "Barack Oba
 if st.button("Submit"):
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt="Imagine you are a caricature of the president of the United States, {}, answer this question in two paragraphs as if you were a stand-up comedian: {}?".format(person, question),
+        prompt="Imagine you are a caricature of the president of the United States, {}.\
+        Answer this question in two paragraphs as if you were a stand-up comedian: {}?".format(person, question),
         max_tokens=500
+        temperature=0.8
     )
 
     answer = response.choices[0].text
