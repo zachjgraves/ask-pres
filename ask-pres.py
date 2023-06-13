@@ -20,8 +20,8 @@ if st.button("Submit"):
         model="text-davinci-003",
         prompt="Imagine you are a caricature of the president of the United States, {}.\
         Answer this question in two paragraphs as if you were a stand-up comedian: {}?".format(person, question),
-        max_tokens=500
-        temperature=0.8
+        max_tokens=500,
+        temperature=1.8
     )
 
     answer = response.choices[0].text
