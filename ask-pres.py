@@ -21,9 +21,19 @@ if st.button("Submit"):
         prompt="Imagine you are a caricature of the president of the United States, {}.\
         Answer this question in two paragraphs as if you were a stand-up comedian: {}?".format(person, question),
         max_tokens=500,
-        temperature=0.8
+        temperature=0.8,
+        stream=True
     )
 
+    with st.empty():
+        collected_events = []
+        completion_text = ''
+        for event in response:
+            collected_events.append(event)
+            event_text = event['choices'][0]['text']
+            completion_text += event_text
+            st.write(completion_text)
+    
     answer = response.choices[0].text
     st.caption(answer)
 
