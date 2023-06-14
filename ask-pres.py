@@ -33,7 +33,4 @@ if st.button("Submit"):
             event_text = event['choices'][0]['text']
             completion_text += event_text
             st.write(completion_text)
-    
-    answer = response.choices[0].text
-    st.caption(answer)
 
